@@ -38,8 +38,9 @@ def printMenu():
     print("Bienvenido al Reto 1")
     print("1- Cargar información del reto")
     print("2- Peliculas con mejores votaciones")
-    print("3- Peliculas por Director")
-    print("4- Requerimiento 2 ... etc")
+    print("3- Películas con peores votaciones")
+    print("4- Peliculas por Director")
+    print("5- Requerimiento 2 ... etc")
     print("0- Salir")
 
 
@@ -68,7 +69,16 @@ def printBestMovies (movies):
             print ('Titulo: ' + movie['original_title'] + '  Fecha: ' + movie['release_date'] + ' Rating: ' + movie['vote_average'])
     else:
         print ('No se encontraron peliculas')
-
+def printWorstMovies (movies):
+    size = lt.size(movies)
+    if size:
+        print (' Estas son las peores peliculas: ')
+        iterator = it.newIterator(movies)
+        while  it.hasNext(iterator):
+            movie = it.next(iterator)
+            print ('Titulo: ' + movie['original_title'] + '  Fecha: ' + movie['release_date'] + ' Rating: ' + movie['vote_average'])
+    else:
+        print ('No se encontraron peliculas')
 
 
 """
@@ -89,14 +99,18 @@ while True:
         number = input ("Buscando las TOP ?: ")
         movies = controller.getBestMovies (catalog, int(number))
         printBestMovies (movies)
-
     elif int(inputs[0])==3:
+        number = input ("Buscando las TOP ?: ")
+        movies = controller.getWorstMovies (catalog, int(number))
+        printWorstMovies (movies)
+
+    elif int(inputs[0])==4:
         dir_name = input("Nombre del director a buscar: ")
         movies = controller.getMoviesByDirector (catalog, dir_name)
         print(movies)
 
 
-    elif int(inputs[0])==4:
+    elif int(inputs[0])==5:
         label = input ("Nombre del Actor a buscar: ")
         pass
     else:
