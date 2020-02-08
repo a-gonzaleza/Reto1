@@ -46,7 +46,10 @@ def printList (lst):
 
 def compareratings (movie1, movie2):
     return ( float(movie1['vote_average']) > float(movie2['vote_average']))
-
+def comparevotes (movie1, movie2):
+    return ( float(movie1['vote_count']) > float(movie2['vote_count']))
+def comparedirectors (directorname1, director):
+    return  (directorname1.lower() in director['name'].lower())
 
 # Funciones para la carga de datos 
 
@@ -111,12 +114,14 @@ def loadData (catalog):
     sort.sort(catalog['movies'],compareratings)
     loadDirectors(catalog)
     loadActors(catalog)
+def sortByVoteCount(catalog):
+    sort.sort(catalog["movies"],comparevotes)
     
 
 # Funciones llamadas desde la vista y enviadas al modelo
 
 def getMoviesByDirector (catalog, dir_name):
-    return model.getMoviesByDirector(catalog, dir_name)
+    return model.getMoviesByDirector(catalog, dir_name,comparedirectors)
 
 def getBestMovies (catalog, number):
     movies = catalog['movies']
@@ -133,3 +138,18 @@ def getWorstMovies (catalog, number):
         movie = lt.getElement (movies, cont)
         lt.addLast (worstmovies, movie)
     return worstmovies
+def getMostVotedMovies (catalog, number):
+    movies = catalog["movies"]    
+    MostVotedmovies = lt.newList()
+    for cont in range (1, number+1):
+        movie = lt.getElement (movies, cont)
+        lt.addLast (MostVotedmovies, movie)
+    return MostVotedmovies
+def getLeastVotedMovies (catalog, number):
+    movies = catalog["movies"]    
+    LeastVotedmovies = lt.newList()
+    tamanio=lt.size(movies)
+    for cont in range (tamanio-number, tamanio):
+        movie = lt.getElement (movies, cont)
+        lt.addLast (LeastVotedmovies, movie)
+    return LeastVotedmovies

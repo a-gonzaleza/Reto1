@@ -77,9 +77,14 @@ def addDirector (catalog, director):
 
 # Funciones de consulta
 
-def getMoviesByDirector (catalog, dir_name):
+def getMoviesByDirector (catalog, dir_name,comparedirectors):
     """
     Retorna las peliculas a partir del nombre del director
     """
-    return []
+    posdirector = lt.isPresent (catalog["directors"], directorname, comparedirectors)
+    if posdirector > 0:
+        director = lt.getElement (catalog['director'], posdirector)
+        return director
+    return None
+    
 

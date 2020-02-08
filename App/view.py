@@ -37,10 +37,10 @@ operación solicitada
 def printMenu():
     print("Bienvenido al Reto 1")
     print("1- Cargar información del reto")
-    print("2- Peliculas con mejores votaciones")
-    print("3- Películas con peores votaciones")
-    print("4- Peliculas por Director")
-    print("5- Requerimiento 2 ... etc")
+    print("2- Requerimiento 1: Buenas películas de un director")
+    print("3- Requerimiento 2: 10 películas con más votos y voto promedio. N películas con menos votos y voto promedio ")
+    print("7- Requerimiento 2 ... etc")
+    print("10- Requerimiento 2 Unificado")
     print("0- Salir")
 
 
@@ -57,6 +57,10 @@ def loadData (catalog):
     """
     controller.loadData(catalog)
 
+def sortByVoteCount(catalog):
+    controller.sortByVoteCount(catalog)
+def sortByVoteAverage(catalog):
+    controller.so
 
 
 def printBestMovies (movies):
@@ -79,7 +83,26 @@ def printWorstMovies (movies):
             print ('Titulo: ' + movie['original_title'] + '  Fecha: ' + movie['release_date'] + ' Rating: ' + movie['vote_average'])
     else:
         print ('No se encontraron peliculas')
-
+def printMostVotedMovies (movies):
+    size = lt.size(movies)
+    if size:
+        print (' Estas son las películas más votadas: ')
+        iterator = it.newIterator(movies)
+        while  it.hasNext(iterator):
+            movie = it.next(iterator)
+            print ('Titulo: ' + movie['original_title'] + '  Fecha: ' + movie['release_date'] + ' Votos: ' + movie['vote_count'])
+    else:
+        print ('No se encontraron peliculas')
+def printLeastVotedMovies (movies):
+    size = lt.size(movies)
+    if size:
+        print (' Estas son las películas menos votadas: ')
+        iterator = it.newIterator(movies)
+        while  it.hasNext(iterator):
+            movie = it.next(iterator)
+            print ('Titulo: ' + movie['original_title'] + '  Fecha: ' + movie['release_date'] + ' Votos: ' + movie['vote_count'])
+    else:
+        print ('No se encontraron peliculas')
 
 """
 Menu principal
@@ -93,24 +116,30 @@ while True:
         loadData (catalog)
         print ('Peliculas cargadas: ' + str(lt.size(catalog['movies'])))
         print ('Directores cargados: ' + str(lt.size(catalog['directors'])))
-
-
     elif int(inputs[0])==2:
-        number = input ("Buscando las TOP ?: ")
-        movies = controller.getBestMovies (catalog, int(number))
-        printBestMovies (movies)
+        director_name=input("Indique el nombre del director: ")
+        
+
+
     elif int(inputs[0])==3:
         number = input ("Buscando las TOP ?: ")
+        movies = controller.getBestMovies (catalog, int(10))
+        printBestMovies (movies)
         movies = controller.getWorstMovies (catalog, int(number))
         printWorstMovies (movies)
+        sortByVoteCount(catalog)
+        movies = controller.getMostVotedMovies (catalog, int(10))
+        printMostVotedMovies (movies)
+        movies = controller.getLeastVotedMovies (catalog, int(number))
+        printLeastVotedMovies (movies)
 
-    elif int(inputs[0])==4:
+    elif int(inputs[0])==6:
         dir_name = input("Nombre del director a buscar: ")
         movies = controller.getMoviesByDirector (catalog, dir_name)
         print(movies)
 
 
-    elif int(inputs[0])==5:
+    elif int(inputs[0])==7:
         label = input ("Nombre del Actor a buscar: ")
         pass
     else:
