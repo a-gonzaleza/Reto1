@@ -48,8 +48,7 @@ def compareratings (movie1, movie2):
     return ( float(movie1['vote_average']) > float(movie2['vote_average']))
 def comparevotes (movie1, movie2):
     return ( float(movie1['vote_count']) > float(movie2['vote_count']))
-def comparedirectors (directorname1, director):
-    return  (directorname1.lower() in director['name'].lower())
+
 
 # Funciones para la carga de datos 
 
@@ -116,12 +115,14 @@ def loadData (catalog):
     loadActors(catalog)
 def sortByVoteCount(catalog):
     sort.sort(catalog["movies"],comparevotes)
+def sortByVoteAverage(catalog):
+    sort.sort(catalog["movies"],compareratings)
     
 
 # Funciones llamadas desde la vista y enviadas al modelo
 
 def getMoviesByDirector (catalog, dir_name):
-    return model.getMoviesByDirector(catalog, dir_name,comparedirectors)
+    return model.getMoviesByDirector(catalog, dir_name)
 
 def getBestMovies (catalog, number):
     movies = catalog['movies']

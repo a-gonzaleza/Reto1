@@ -60,7 +60,7 @@ def loadData (catalog):
 def sortByVoteCount(catalog):
     controller.sortByVoteCount(catalog)
 def sortByVoteAverage(catalog):
-    controller.so
+    controller.sortByVoteAverage(catalog)
 
 
 def printBestMovies (movies):
@@ -122,6 +122,7 @@ while True:
 
 
     elif int(inputs[0])==3:
+        sortByVoteAverage(catalog)
         number = input ("Buscando las TOP ?: ")
         movies = controller.getBestMovies (catalog, int(10))
         printBestMovies (movies)
