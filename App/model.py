@@ -60,8 +60,8 @@ def newDirector (name, movie_id):
     """
     Esta estructura almancena los directores de una pelicula.
     """
-    director = {'name':'', 'movie_id':''}
-    director ['name'] = name
+    director = {'director_name':'', 'movie_id':''}
+    director ['director_name'] = name
     director ['movie_id'] = movie_id
     return director
 
@@ -81,5 +81,11 @@ def getMoviesByDirector (catalog, dir_name):
     """
     Retorna las peliculas a partir del nombre del director
     """
-    return []
+    directorMoviesID=[]
+    directorMoviesData=[]
+    totalRating=0
+    for x in catalog["directors"]:
+        if dir_name==x["director_name"]:
+            x=0
+    return directorMoviesData
 
