@@ -39,6 +39,7 @@ def printMenu():
     print("1- Cargar información del reto")
     print("2- Requerimiento 1: Buenas películas de un director")
     print("3- Requerimiento 2: 10 películas con más votos y voto promedio. N películas con menos votos y voto promedio ")
+    print("4- Requerimiento 3: N° Películas de un director y su promedio")
     print("7- Requerimiento 2 ... etc")
     print("10- Requerimiento 2 Unificado")
     print("0- Salir")
@@ -134,7 +135,7 @@ while True:
         movies = controller.getLeastVotedMovies (catalog, int(number))
         printLeastVotedMovies (movies)
 
-    elif int(inputs[0])==6:
+    elif int(inputs[0])==4:
         dir_name = input("Nombre del director a buscar: ")
         movies = controller.getMoviesByDirector (catalog, dir_name)
         print(movies)
