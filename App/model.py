@@ -85,7 +85,7 @@ def getMoviesByDirector (catalog, dir_name):
     directorMoviesData=[]
     totalRating=0
     for x in catalog["directors"]:
-        if dir_name==x["director_name"]:
-            x=0
-    return directorMoviesData
+        if dir_name in ["director_name"]:
+            directorMoviesID.append(["id"])
+    return directorMoviesID
 
