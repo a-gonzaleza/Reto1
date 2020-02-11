@@ -123,6 +123,8 @@ def sortByVoteAverage(catalog):
 
 def getMoviesByDirector (catalog, dir_name):
     return model.getMoviesByDirector(catalog, dir_name)
+def getGoodMoviesByDirector(catalog,dir_name):
+    return model.getGoodMoviesByDirector(catalog,dir_name)
 
 def getBestMovies (catalog, number):
     movies = catalog['movies']

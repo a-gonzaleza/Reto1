@@ -118,7 +118,10 @@ while True:
         print ('Peliculas cargadas: ' + str(lt.size(catalog['movies'])))
         print ('Directores cargados: ' + str(lt.size(catalog['directors'])))
     elif int(inputs[0])==2:
-        director_name=input("Indique el nombre del director: ")
+        dir_name=input("Indique el nombre del director: ")
+        movies=controller.getGoodMoviesByDirector(catalog,dir_name)
+        print(movies)
+
         
 
 
