@@ -150,4 +150,22 @@ def getMoviesByDirector (catalog, dir_name):
         return print("Ha dirigido",len(directorMoviesID),"películas y su promedio es de",round(totalRating/len(directorMoviesID),3))
     else:
         return "No tiene películas"
+def getMoviesByActor(catalog,actor_name):
+    actorMoviesID=[]
+    totalRating=0
+    iterator = it.newIterator(catalog["actors"])
+    while it.hasNext(iterator):
+        element = it.next(iterator)
+        if actor_name.lower() in element["actor_name"].lower(): #filtrar por palabra clave 
+            actorMoviesID.append(element["movie_id"])
+    iterator = it.newIterator(catalog["movies"])
+    while it.hasNext(iterator):
+        element=it.next(iterator)
+        if element["id"] in actorMoviesID:
+            totalRating+=float(element["vote_average"])
+
+    if len(actorMoviesID)>0:
+        return print("Ha estado en",len(actorMoviesID),"películas y su promedio es de",round(totalRating/len(actorMoviesID),3))
+    else:
+        return "No tiene películas"
 

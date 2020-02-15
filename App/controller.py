@@ -136,6 +136,8 @@ def getMoviesByDirector (catalog, dir_name):
     return model.getMoviesByDirector(catalog, dir_name)
 def getGoodMoviesByDirector(catalog,dir_name):
     return model.getGoodMoviesByDirector(catalog,dir_name)
+def getMoviesByActor(catalog,actor_name):
+    return model.getMoviesByActor(catalog,actor_name)
 
 def getBestMovies (catalog, number):
     movies = catalog['movies']
