@@ -105,6 +105,23 @@ def addDirector (catalog, director):
 
 
 # Funciones de consulta
+def getGoodMoviesByDirector(catalog,dir_name):
+    directorMoviesID=[]
+    goodMovies=0
+    iterator = it.newIterator(catalog["directors"])
+    while it.hasNext(iterator):
+        element = it.next(iterator)
+        if dir_name.lower() in element["director_name"].lower(): #filtrar por palabra clave 
+             directorMoviesID.append(element["movie_id"])
+    iterator = it.newIterator(catalog["movies"])
+    while it.hasNext(iterator):
+        element=it.next(iterator)
+        if element["id"] in directorMoviesID and float(element["vote_average"])>=6:
+            goodMovies+=1
+    if goodMovies>0:
+        return print("Ha dirigido",goodMovies,"películas con valoraciones superiores a 6")
+    else:
+        return print("No ha dirigido películas con valoraciones mayores a 6")
 
 def getMoviesByDirector (catalog, dir_name):
     """
@@ -113,8 +130,24 @@ def getMoviesByDirector (catalog, dir_name):
     directorMoviesID=[]
     directorMoviesData=[]
     totalRating=0
-    for x in catalog["directors"]:
-        if dir_name in ["director_name"]:
-            directorMoviesID.append(["id"])
-    return directorMoviesID
+    iterator = it.newIterator(catalog["directors"])
+    while it.hasNext(iterator):
+        element = it.next(iterator)
+        if dir_name.lower() in element["director_name"].lower(): #filtrar por palabra clave 
+             directorMoviesID.append(element["movie_id"])
+    iterator = it.newIterator(catalog["movies"])
+    while it.hasNext(iterator):
+        element=it.next(iterator)
+        if element["id"] in directorMoviesID:
+            totalRating+=float(element["vote_average"])
+
+    if len(directorMoviesID)>0:
+        return print("Ha dirigido",len(directorMoviesID),"películas y su promedio es de",round(totalRating/len(directorMoviesID),3))
+    else:
+        return "No tiene películas"
+
+    if len(directorMoviesID)>0:
+        return print("Ha dirigido",len(directorMoviesID),"películas y su promedio es de",round(totalRating/len(directorMoviesID),3))
+    else:
+        return "No tiene películas"
 

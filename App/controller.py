@@ -102,7 +102,7 @@ def loadActors(catalog):
         for row in spamreader: 
             model.addActor (catalog, row)
     t1_stop = process_time() #tiempo inicial
-    print("Tiempo de ejecución carga directores",t1_stop-t1_start," segundos")
+    print("Tiempo de ejecución carga actores",t1_stop-t1_start," segundos")
     
 
 
