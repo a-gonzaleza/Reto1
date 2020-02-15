@@ -138,7 +138,7 @@ def getMoviesByDirector (catalog, dir_name):
     iterator = it.newIterator(catalog["movies"])
     while it.hasNext(iterator):
         element=it.next(iterator)
-        if element["id"] in directorMoviesID:
+        if element["movie_id"] in directorMoviesID:
             totalRating+=float(element["vote_average"])
 
     if len(directorMoviesID)>0:
@@ -153,6 +153,7 @@ def getMoviesByDirector (catalog, dir_name):
 def getMoviesByActor(catalog,actor_name):
     actorMoviesID=[]
     totalRating=0
+    actorDirectors={}
     iterator = it.newIterator(catalog["actors"])
     while it.hasNext(iterator):
         element = it.next(iterator)
@@ -163,9 +164,20 @@ def getMoviesByActor(catalog,actor_name):
         element=it.next(iterator)
         if element["id"] in actorMoviesID:
             totalRating+=float(element["vote_average"])
+    iterator = it.newIterator(catalog["directors"])
+    while it.hasNext(iterator):
+        element = it.next(iterator)
+        if element["movie_id"] in actorMoviesID and element["director_name"] not in actorDirectors:
+            actorDirectors[element["director_name"]]=1
+        if element["movie_id"] in actorMoviesID and element["director_name"] in actorDirectors:
+            actorDirectors[element["director_name"]]+=1
+        
+        
+    
+
 
     if len(actorMoviesID)>0:
-        return print("Ha estado en",len(actorMoviesID),"películas y su promedio es de",round(totalRating/len(actorMoviesID),3))
+        return print("Ha estado en",len(actorMoviesID),"películas y su promedio es de",round(totalRating/len(actorMoviesID),3), ". Ha sido dirigido más veces por: ",max(actorDirectors,key=actorDirectors.get))
     else:
         return "No tiene películas"
 
