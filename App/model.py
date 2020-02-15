@@ -48,20 +48,49 @@ def newActor (name, movie_id):
     """
     Crea una nueva estructura para almacenar los actores de una pelicula 
     """
-    pass
+    actor={'actor_name':'', 'movie_id':''}
+    actor ['actor_name'] = name
+    actor ['movie_id'] = movie_id
+    return actor
+    
 
 def addActor (catalog, actor):
     """
     Adiciona un actor a la lista de actores
     """
-    pass
+    d1 = newActor (actor['actor1_name'], actor['id'])
+    if actor['actor1_name']=="none":
+        return None
+    else:
+        lt.addLast (catalog['actors'], d1)
+    d2 = newActor (actor['actor2_name'], actor['id'])
+    if actor['actor2_name']=="none":
+        return None
+    else:
+        lt.addLast (catalog['actors'], d2)
+    d3 = newActor (actor['actor3_name'], actor['id'])
+    if actor['actor3_name']=="none":
+        return None
+    else:
+        lt.addLast (catalog['actors'], d3)
+    d4 = newActor (actor['actor4_name'], actor['id'])
+    if actor['actor4_name']=="none":
+        return None
+    else:
+        lt.addLast (catalog['actors'], d4)
+    d5 = newActor (actor['actor5_name'], actor['id'])
+    if actor['actor5_name']=="none":
+        return None
+    else:
+        lt.addLast (catalog['actors'], d5)
+    
 
 def newDirector (name, movie_id):
     """
     Esta estructura almancena los directores de una pelicula.
     """
-    director = {'name':'', 'movie_id':''}
-    director ['name'] = name
+    director = {'director_name':'', 'movie_id':''}
+    director ['director_name'] = name
     director ['movie_id'] = movie_id
     return director
 
@@ -82,38 +111,10 @@ def getMoviesByDirector (catalog, dir_name):
     Retorna las peliculas a partir del nombre del director
     """
     directorMoviesID=[]
+    directorMoviesData=[]
     totalRating=0
-    iterator = it.newIterator(catalog["directors"])
-    while it.hasNext(iterator):
-        element = it.next(iterator)
-        if dir_name.lower() in element["name"].lower(): #filtrar por palabra clave 
-             directorMoviesID.append(element["movie_id"])
-    iterator = it.newIterator(catalog["movies"])
-    while it.hasNext(iterator):
-        element=it.next(iterator)
-        if element["id"] in directorMoviesID:
-            totalRating+=float(element["vote_average"])
-
-    if len(directorMoviesID)>0:
-        return print("Ha dirigido",len(directorMoviesID),"películas y su promedio es de",round(totalRating/len(directorMoviesID),3))
-    else:
-        return "No tiene películas"
-def getGoodMoviesByDirector(catalog,dir_name):
-    directorMoviesID=[]
-    goodMovies=0
-    iterator = it.newIterator(catalog["directors"])
-    while it.hasNext(iterator):
-        element = it.next(iterator)
-        if dir_name.lower() in element["name"].lower(): #filtrar por palabra clave 
-             directorMoviesID.append(element["movie_id"])
-    iterator = it.newIterator(catalog["movies"])
-    while it.hasNext(iterator):
-        element=it.next(iterator)
-        if element["id"] in directorMoviesID and float(element["vote_average"])>=6:
-            goodMovies+=1
-    if goodMovies>0:
-        return print("Ha dirigido",goodMovies,"películas con valoraciones superiores a 6")
-    else:
-        return print("No ha dirigido películas con valoraciones mayores a 6")
-
+    for x in catalog["directors"]:
+        if dir_name in ["director_name"]:
+            directorMoviesID.append(["id"])
+    return directorMoviesID
 

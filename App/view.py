@@ -40,6 +40,7 @@ def printMenu():
     print("2- Requerimiento 1: Buenas películas de un director")
     print("3- Requerimiento 2: 10 películas con más votos y voto promedio. N películas con menos votos y voto promedio ")
     print("4- Requerimiento 3: N° Películas de un director y su promedio")
+    print("5- Requerimiento 4: Nº Películas de un actor, su promedio y el director que más lo ha dirigido.")
     print("7- Requerimiento 2 ... etc")
     print("10- Requerimiento 2 Unificado")
     print("0- Salir")
@@ -117,6 +118,7 @@ while True:
         loadData (catalog)
         print ('Peliculas cargadas: ' + str(lt.size(catalog['movies'])))
         print ('Directores cargados: ' + str(lt.size(catalog['directors'])))
+        print ("Actores cargados: " + str(lt.size(catalog['actors'])))
     elif int(inputs[0])==2:
         dir_name=input("Indique el nombre del director: ")
         movies=controller.getGoodMoviesByDirector(catalog,dir_name)
@@ -144,7 +146,7 @@ while True:
         print(movies)
 
 
-    elif int(inputs[0])==7:
+    elif int(inputs[0])==5:
         label = input ("Nombre del Actor a buscar: ")
         pass
     else:
