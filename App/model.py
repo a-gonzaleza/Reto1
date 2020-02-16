@@ -138,7 +138,7 @@ def getMoviesByDirector (catalog, dir_name):
     iterator = it.newIterator(catalog["movies"])
     while it.hasNext(iterator):
         element=it.next(iterator)
-        if element["movie_id"] in directorMoviesID:
+        if element["id"] in directorMoviesID:
             totalRating+=float(element["vote_average"])
 
     if len(directorMoviesID)>0:
