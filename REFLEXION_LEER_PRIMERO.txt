@@ -1,0 +1,21 @@
+¿Se debería ordenar la información? ¿Por qué concepto?
+Si, es necesario ordenar la información, especialmente para el requerimiento 2. 
+Al estar ordenada, permite resolver el problema  de una manera más eficiente ya
+que en vez de revisar toda la lista desordenada, solo busca entre los primeros 
+y últimos elementos
+
+¿Cómo usar la menor cantidad de memoria posible?
+Para usar la menor cantidad de memoria posible, se podrían optimizar los catálogos 
+para tener la misma información en menos lugares. Se podrían utilizar apuntadores
+en vez de repetir y escribir los mismos datos en otros lugares.
+
+¿Cómo se utilizaron las estructuras de datos vistas en clase?
+Se hizo un uso del arreglo.
+
+
+
+
+**NOTA**:
+El requerimiento 5 no se llegó a implementar. El programa sirve para los archivos pequeños
+pero por alguna razón desconocida, saca un "key_error" para los requerimientos 1,3 y 4 con
+los archivos grandes.
