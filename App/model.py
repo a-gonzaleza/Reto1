@@ -128,7 +128,6 @@ def getMoviesByDirector (catalog, dir_name):
     Retorna las peliculas a partir del nombre del director
     """
     directorMoviesID=[]
-    directorMoviesData=[]
     totalRating=0
     iterator = it.newIterator(catalog["directors"])
     while it.hasNext(iterator):
