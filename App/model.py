@@ -106,22 +106,26 @@ def addDirector (catalog, director):
 
 # Funciones de consulta
 def getGoodMoviesByDirector(catalog,dir_name):
-    directorMoviesID=[]
-    goodMovies=0
-    iterator = it.newIterator(catalog["directors"])
-    while it.hasNext(iterator):
-        element = it.next(iterator)
-        if dir_name.lower() in element["director_name"].lower(): #filtrar por palabra clave 
-             directorMoviesID.append(element["movie_id"])
-    iterator = it.newIterator(catalog["movies"])
-    while it.hasNext(iterator):
-        element=it.next(iterator)
-        if element["id"] in directorMoviesID and float(element["vote_average"])>=6:
-            goodMovies+=1
-    if goodMovies>0:
-        return print("Ha dirigido",goodMovies,"películas con valoraciones superiores a 6")
-    else:
-        return print("No ha dirigido películas con valoraciones mayores a 6")
+    try:
+        directorMoviesID=[]
+        goodMovies=0
+        iterator = it.newIterator(catalog["directors"])
+        while it.hasNext(iterator):
+            element = it.next(iterator)
+            if dir_name.lower() in element["director_name"].lower(): #filtrar por palabra clave 
+                directorMoviesID.append(element["movie_id"])
+        iterator = it.newIterator(catalog["movies"])
+        while it.hasNext(iterator):
+            element=it.next(iterator)
+            if element["id"] in directorMoviesID and float(element["vote_average"])>=6:
+                goodMovies+=1
+        if goodMovies>0:
+            return print("Ha dirigido",goodMovies,"películas con valoraciones superiores a 6")
+        else:
+            return print("No ha dirigido películas con valoraciones mayores a 6")
+    except:
+        print("Elemnto:",element)
+        raise Exception('Error')
 
 def getMoviesByDirector (catalog, dir_name):
     """

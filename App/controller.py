@@ -58,11 +58,11 @@ def loadMovies (catalog):
     
     """
     t1_start = process_time() #tiempo inicial
-    moviesfile = cf.data_dir + 'themoviesdb/SmallMoviesDetailsCleaned.csv'
+    moviesfile = cf.data_dir + 'themoviesdb/AllMoviesDetailsCleaned.csv'
     
     dialect = csv.excel()
     dialect.delimiter=";"
-    with open(moviesfile, encoding="utf-8") as csvfile:
+    with open(moviesfile, encoding="utf-8-sig") as csvfile:
         spamreader = csv.DictReader(csvfile, dialect=dialect)
         for row in spamreader: 
             lt.addLast (catalog['movies'], row)
@@ -76,11 +76,11 @@ def loadDirectors(catalog):
     Carga todos los directores
     """
     t1_start = process_time() #tiempo inicial
-    castingfile = cf.data_dir + 'themoviesdb/MoviesCastingRaw-small.csv'
+    castingfile = cf.data_dir + 'themoviesdb/AllMoviesCastingRaw.csv'
     
     dialect = csv.excel()
     dialect.delimiter=";"
-    with open(castingfile, encoding="utf-8") as csvfile:
+    with open(castingfile, encoding="utf-8-sig") as csvfile:
         spamreader = csv.DictReader(csvfile, dialect=dialect)
         for row in spamreader: 
             model.addDirector (catalog, row)
@@ -93,11 +93,11 @@ def loadActors(catalog):
     Carga todos los actores
     """
     t1_start = process_time() #tiempo inicial
-    castingfile = cf.data_dir + 'themoviesdb/MoviesCastingRaw-small.csv'
+    castingfile = cf.data_dir + 'themoviesdb/AllMoviesCastingRaw.csv'
     
     dialect = csv.excel()
     dialect.delimiter=";"
-    with open(castingfile, encoding="utf-8") as csvfile:
+    with open(castingfile, encoding="utf-8-sig") as csvfile:
         spamreader = csv.DictReader(csvfile, dialect=dialect)
         for row in spamreader: 
             model.addActor (catalog, row)
